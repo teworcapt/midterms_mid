@@ -9,7 +9,7 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private GameObject mediumWallPrefab;
     [SerializeField] private GameObject largeWallPrefab;
 
-    [Header("Start / Finish References (assign in scene)")]
+    [Header("Start / Finish")]
     [SerializeField] private Transform startLine;
     [SerializeField] private Transform finishLine;
 
@@ -35,13 +35,11 @@ public class MazeGenerator : MonoBehaviour
     {
         if (platform == null)
         {
-            Debug.LogError("Please assign a platform Transform in the inspector.");
             return;
         }
 
         if (startLine == null || finishLine == null)
         {
-            Debug.LogError("Please assign StartLine and FinishLine Transforms in the inspector.");
             return;
         }
 
@@ -56,9 +54,6 @@ public class MazeGenerator : MonoBehaviour
             platformSize = platRenderer.bounds.size;
         }
         else
-        {
-            Debug.LogWarning("Platform has no collider or renderer, using default size.");
-        }
 
         platformBounds = new Bounds(platform.position, platformSize);
 
@@ -76,7 +71,6 @@ public class MazeGenerator : MonoBehaviour
     {
         if (!prefab)
         {
-            Debug.LogWarning("Missing wall prefab reference.");
             yield break;
         }
 

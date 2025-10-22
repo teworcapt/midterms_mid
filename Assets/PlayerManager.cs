@@ -12,14 +12,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!playerPrefab || !startLine)
         {
-            Debug.LogError("Assign playerPrefab and startLine in the inspector.");
             return;
         }
 
-        // Spawn player
         GameObject player = Instantiate(playerPrefab, startLine.position + Vector3.up, startLine.rotation);
 
-        // Ensure physics setup
         rb = player.GetComponent<Rigidbody>() ?? player.AddComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.linearDamping = 2f;
